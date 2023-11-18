@@ -1,0 +1,34 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+	appId: 'com.appId.package',
+	asar: true,
+	directories: {
+		output: 'release/${version}',
+	},
+	// electronDownload: {
+	// 	mirror: 'https://npm.taobao.org/mirrors/electron/',
+	// 	platform: 'win32',
+	// },
+	files: ['dist-electron', 'dist'],
+	mac: {
+		artifactName: '${productName}_${version}.${ext}',
+		target: ['dmg', 'zip'],
+	},
+	win: {
+		target: [
+			{
+				target: 'nsis',
+				arch: ['x64'],
+			},
+		],
+		artifactName: '${productName}_${version}.${ext}',
+	},
+	nsis: {
+		oneClick: false,
+		perMachine: false,
+		allowToChangeInstallationDirectory: true,
+		deleteAppDataOnUninstall: false,
+	},
+}

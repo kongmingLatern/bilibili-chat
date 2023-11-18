@@ -1,0 +1,18 @@
+@font-face {
+	font-family: 'seto';
+	// src: url('./zi.ttf');
+	src: url('./hk.ttf');
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	background-color: unset;
+	color: unset;
+}

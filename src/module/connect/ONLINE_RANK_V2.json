@@ -1,0 +1,48 @@
+{
+  "cmd": "ONLINE_RANK_V2",
+  "data": {
+    "list": [
+      {
+        "uid": 31916621,
+        "face": "https://i2.hdslb.com/bfs/baselabs/154d8c0edc5a2cc4cd45d44fdef19b2a2fcf88ed.png",
+        "score": "26",
+        "uname": "空空的塞钱箱",
+        "rank": 1,
+        "guard_level": 0
+      },
+      {
+        "uid": 204734629,
+        "face": "http://i1.hdslb.com/bfs/face/642a6a15803843623a4ca896aeb7c5fca8c55a55.jpg",
+        "score": "16",
+        "uname": "依七君",
+        "rank": 2,
+        "guard_level": 0
+      },
+      {
+        "uid": 186887073,
+        "face": "https://i0.hdslb.com/bfs/face/0750b69693677d87e79174174cc58109fc3bb7b5.jpg",
+        "score": "15",
+        "uname": "凤之兮原",
+        "rank": 3,
+        "guard_level": 3
+      },
+      {
+        "uid": 11957637,
+        "face": "http://i0.hdslb.com/bfs/face/e47adba765697b417f2ca5a358ef2a3470f3f3ad.jpg",
+        "score": "14",
+        "uname": "双马尾★圣光",
+        "rank": 4,
+        "guard_level": 3
+      },
+      {
+        "uid": 33673338,
+        "face": "http://i0.hdslb.com/bfs/face/d47fa0975d03bcf00b1b3f3bd4d94618785c1a68.jpg",
+        "score": "1",
+        "uname": "随枫飞舞",
+        "rank": 5,
+        "guard_level": 0
+      }
+    ],
+    "rank_type": "gold-rank"
+  }
+}

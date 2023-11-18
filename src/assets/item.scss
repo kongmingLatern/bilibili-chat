@@ -1,0 +1,40 @@
+.background {
+	background: rgb(255 255 255 / 20%);
+	backdrop-filter: blur(15px);
+}
+.cover {
+	background: #420926;
+}
+.enter-cover {
+	background: linear-gradient(
+		left to right,
+		'#000428',
+		'#004E92'
+	);
+}
+.seto {
+	font-family: 'seto',Fallback, sans-serif;
+}
+
+.popup {
+  // border: 5px solid;
+	//border-image: url(https://img95.699pic.com/element/40148/2918.png_860.png);
+	// border-image: url(@/assets/chrismas.png);
+	// border-image-slice: 22%;
+	// background: url(@/assets/moon.png) right bottom no-repeat,
+	// rgba(255, 255, 255, 0.1);
+	// url(@/assets/80.png) right center no-repeat;
+	// background-size: 30px auto;
+	// background: url(@/assets/background-helloween.jpeg);
+	// background-repeat: no-repeat;
+	// background-size: cover;
+// 	background: url(@/assets/moon.png)
+// 		left center no-repeat,
+// 		rgba(255, 255, 255, .1);
+// 	background-size: 30px auto;
+// 	background: url(https://pic.imgdb.cn/item/65011eb7661c6c8e5449c328.png)
+// 			left bottom no-repeat,
+// 		url(@/assets/80.png) right top no-repeat;
+// 	background-size: 30px, contain;
+}
+

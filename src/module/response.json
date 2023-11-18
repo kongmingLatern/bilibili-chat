@@ -1,0 +1,135 @@
+{
+  "note": "获取直播信息",
+  "code": 0,
+  "msg": "ok",
+  "message": "ok",
+  "data": {
+    "uid": 3537123099543958,
+    "room_id": 30639870,
+    "short_id": 0,
+    "attention": 317,
+    "online": 7210,
+    "is_portrait": false,
+    "description": "",
+    "live_status": 0,
+    "area_id": 371,
+    "parent_area_id": 9,
+    "parent_area_name": "虚拟主播",
+    "old_area_id": 6,
+    "background": "",
+    "title": "【新V】恐怖解谜 克罗艾的镇魂曲",
+    "user_cover": "https://i0.hdslb.com/bfs/live/new_room_cover/3b6fe99a2a99d6c7763f82e4c852a19f6d585b38.jpg",
+    "keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe09120254000030639870pmc2lf.jpg",
+    "is_strict_room": false,
+    "live_time": "0000-00-00 00:00:00",
+    "tags": "",
+    "is_anchor": 0,
+    "room_silent_type": "",
+    "room_silent_level": 0,
+    "room_silent_second": 0,
+    "area_name": "虚拟日常",
+    "pendants": "",
+    "area_pendants": "",
+    "hot_words": [
+      "2333333",
+      "喂，妖妖零吗",
+      "红红火火恍恍惚惚",
+      "FFFFFFFFFF",
+      "Yooooooo",
+      "啪啪啪啪啪",
+      "666666666",
+      "老司机带带我",
+      "你为什么这么熟练啊",
+      "gg",
+      "prprpr",
+      "向大佬低头",
+      "请大家注意弹幕礼仪哦！",
+      "还有这种操作！",
+      "囍",
+      "打call",
+      "你气不气？",
+      "队友呢？"
+    ],
+    "hot_words_status": 0,
+    "verify": "",
+    "new_pendants": {
+      "frame": {
+        "name": "",
+        "value": "",
+        "position": 0,
+        "desc": "",
+        "area": 0,
+        "area_old": 0,
+        "bg_color": "",
+        "bg_pic": "",
+        "use_old_area": false
+      },
+      "badge": null,
+      "mobile_frame": {
+        "name": "",
+        "value": "",
+        "position": 0,
+        "desc": "",
+        "area": 0,
+        "area_old": 0,
+        "bg_color": "",
+        "bg_pic": "",
+        "use_old_area": false
+      },
+      "mobile_badge": null
+    },
+    "up_session": "",
+    "pk_status": 0,
+    "pk_id": 0,
+    "battle_id": 0,
+    "allow_change_area_time": 0,
+    "allow_upload_cover_time": 0,
+    "studio_info": {
+      "status": 0,
+      "master_list": []
+    }
+  }
+},
+{
+  "note": "获取主播信息",
+  "code": 0,
+  "msg": "",
+  "message": "",
+  "data": {
+    "info": {
+      "uid": 3537123099543958,
+      "uname": "九之濑三月yayoi",
+      "face": "https://i1.hdslb.com/bfs/face/fae63f4184ba38aef8bd662552058e5694d07daa.jpg",
+      "official_verify": {
+        "type": -1,
+        "desc": ""
+      },
+      "gender": 0
+    },
+    "exp": {
+      "master_level": {
+        "level": 13,
+        "color": 5805790,
+        "current": [
+          16800,
+          56410
+        ],
+        "next": [
+          22400,
+          78810
+        ]
+      }
+    },
+    "follower_num": 317,
+    "room_id": 30639870,
+    "medal_name": "催眠姬",
+    "glory_count": 0,
+    "pendant": "",
+    "link_group_num": 0,
+    "room_news": {
+      "content": "晚上9-10开播，下播时间不定，来感受一下适合睡觉的恐怖游戏吧！",
+      "ctime": "2023-08-22 18:22:05",
+      "ctime_text": "8-22"
+    }
+  }
+}

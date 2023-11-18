@@ -1,0 +1,46 @@
+{
+  "cmd": "INTERACT_WORD",
+  "data": {
+    "uid": 0,
+    "uname": "幻***",
+    "uname_color": "",
+    "identities": [
+      1
+    ],
+    "msg_type": 1,
+    "roomid": 30639870,
+    "timestamp": 1694765042,
+    "score": 1694765042909,
+    "fans_medal": {
+      "target_id": 0,
+      "medal_level": 0,
+      "medal_name": "",
+      "medal_color": 0,
+      "medal_color_start": 0,
+      "medal_color_end": 0,
+      "medal_color_border": 0,
+      "is_lighted": 0,
+      "guard_level": 0,
+      "special": "",
+      "icon_id": 0,
+      "anchor_roomid": 0,
+      "score": 0
+    },
+    "is_spread": 0,
+    "spread_info": "",
+    "contribution": {
+      "grade": 0
+    },
+    "spread_desc": "",
+    "tail_icon": 0,
+    "trigger_time": 1694765041800134400,
+    "privilege_type": 0,
+    "core_user_type": 0,
+    "tail_text": "",
+    "contribution_v2": {
+      "grade": 0,
+      "rank_type": "",
+      "text": ""
+    }
+  }
+}

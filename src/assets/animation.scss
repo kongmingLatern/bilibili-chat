@@ -1,0 +1,57 @@
+@keyframes slideFromBottom {
+	from {
+		transform: translateX(10px);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+@keyframes slideFromUp {
+	from {
+		transform: translateY(20%);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+.slide-up-animation {
+	animation: slideFromBottom 0.5s ease-in-out;
+}
+
+.slide-from-bottom {
+	transition: all 0.5s;
+	animation: slideFromUp 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
+	0%,
+	100% {
+		transform: translate(0, 0);
+	}
+	50% {
+		transform: translate(-100%, -110%);
+	}
+	60% {
+		transform: translate(-120%, -130%);
+	}
+	75% {
+		transform: translate(-140%, -120%);
+	}
+}
+
+
+.slide-up {
+	transition: all 1s;
+	animation: slideUp 10s infinite linear;
+}
+.slide-up-reverse {
+	transition: all 1s;
+	animation: slideUp 10s infinite reverse;
+}
+
+
+
