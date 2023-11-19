@@ -1,3 +1,4 @@
+import '@/assets/background.scss'
 export default function Card(props) {
 	const {
 		uid,
@@ -16,7 +17,7 @@ export default function Card(props) {
 
 	return (
 		<div
-			className="mt-1rem rounded-lg ml-0.5rem overflow-hidden card w-96 bg-base-100 shadow-xl bg-red-500 mb-2"
+			className="mt-1rem rounded-lg ml-0.5rem overflow-hidden card w-96 bg-base-100 shadow-xl bg-red-500 mb-2 marry"
 			style={{
 				background,
 				color,

@@ -47,6 +47,7 @@ function App() {
 				// roomId: 26307043,
 				// roomId: 4245963,
 				// roomId: 415174
+				// roomId: 11713
 			},
 		{
 				INTERACT_WORD: res => {
@@ -157,7 +158,7 @@ function App() {
 					// }
 
 					const { dm_v2, info } = res
-					console.log(res)
+					// console.log(res)
 					/*
 					const bufferImg = Buffer.from(
 						dm_v2,

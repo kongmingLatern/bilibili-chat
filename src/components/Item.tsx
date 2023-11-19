@@ -17,6 +17,8 @@ import Christmas2 from '@/assets/2.png'
 import Christmas1 from '@/assets/chrismas1.png'
 import Christmas4 from '@/assets/4.png'
 import Christmas3 from '@/assets/chrismas3.png'
+import Marry1 from '@/assets/marry1.jpg'
+import Marry2 from '@/assets/marry2.jpeg'
 import { useState } from 'react'
 
 export default function Item(props: Partial<ItemProps>) {
@@ -173,7 +175,8 @@ export default function Item(props: Partial<ItemProps>) {
 						name: '收到点赞信息',
 						cover: Zan,
 						// background: '#052083',
-						background: '#293a79',
+						// background: '#293a79',
+						background:`url(${Math.floor(Math.random() * 3) ? Marry1: Marry2})`,
 						headerBackground: '#511482e0720f',
 					}}
 				/>
