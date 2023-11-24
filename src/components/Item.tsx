@@ -24,6 +24,7 @@ import { useState } from 'react'
 export default function Item(props: Partial<ItemProps>) {
 	const { uid, type, avatar, name, time, content } = props
 	const [random, setRandom] =  useState(Math.floor(Math.random() * 4)) 
+	const [rand, setRand] = useState(Math.floor(Math.random() * 3))
 
 	const handleType = () => {
 		switch (type) {
@@ -176,7 +177,7 @@ export default function Item(props: Partial<ItemProps>) {
 						cover: Zan,
 						// background: '#052083',
 						// background: '#293a79',
-						background:`url(${Math.floor(Math.random() * 3) ? Marry1: Marry2})`,
+						background:`url(${rand ? Marry1: Marry2})`,
 						headerBackground: '#511482e0720f',
 					}}
 				/>

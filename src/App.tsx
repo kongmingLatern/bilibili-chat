@@ -41,9 +41,11 @@ function App() {
 	function connect(roomId?) {
 		const live = createLiveConnect(
 			{
+				// 三月直播间
 				roomId: 30639870,
-				// roomId: 923833,
+				// 凤之兮原测试直播间
 				// roomId: 22021613,
+				// roomId: 923833,
 				// roomId: 26307043,
 				// roomId: 4245963,
 				// roomId: 415174

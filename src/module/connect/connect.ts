@@ -1,6 +1,7 @@
 import { KeepLiveWS } from 'bilibili-live-ws'
 import { ConnectProps } from './type'
 import { CMD } from './const'
+import {v4} from 'uuid'
 
 interface Methods<T> {
 	open: (args?: T) => any
@@ -25,9 +26,15 @@ export function createLiveConnect(
 ) {
 	const authBody = {
 		...props.authBody,
-	    // uid: 3537123099543958,
+		// uid: '3537123099543958',
+		// key: 'oZp5aBHs7XShtu_uYbN5jvpTxJoW6OeAHRMMdkaTR5StPZB3mgcnB5rWyFFAV5htUw-dFvjwkwFudULJvy9QvUJYOpXPUhD1n2osJKazg8XnmsmgRv-2p1bKkXe8BV7_GcR76-mTdBaRjUggnyGWzvGb8JU=',	
 		// platform: 'web',
-        // key: "8mCdpb0bCwIU_XyggngIci5Aa-vaDx_CRQnoLC6aj4w9ZG3YdmvBbNgsMdJjv4s8FnnmY1KTCdoLyDhTibUxTKwT7Xsf_nK0SNJPjUC5qtt2a4QIODZFsmU_ERm0uKOlKiPn8-naMYQoQelo-qHtp-4=",
+		// protover: 3,
+		// buvid: v4() + 'infoc'
+		// uid: 27564630,
+		// key: 'atxCF7k5d-ox9JZe3scXBLDHSYfWRD9WzxBBNQxYAvJ2sAcSuURjHV9Yft8WfBePleUMc1DMS1fpsMm6O3hMoYyOxMzqg4QAgc_qiwBQuGbwyohUmO-t_B0mnmj8ZBlhKMqTVkbmWkDfrIPGoyw6bf3em0bc'
+		// key: '2ZHIkAQENT9QigRHsQj5z2OWXJz5KZub_ocimvHb70J_CrWf1nsPeFiCuybbQNkistA7ZnAsVFRPYLDiL3ngT4L6KQ0-YSt47wBxSWpdzyUeWwiUn05i0tDcWy1JFO1c1lFgqWS1plnToby1QBAgxAEwug=='
+	    // uid: 3537123099543958,
 	    // uid: 3537123099543958,
         // key: "8mCdpb0bCwIU_XyggngIci5Aa-vaDx_CRQnoLC6aj4w9ZG3YdmvBbNgsMdJjv4s8FnnmY1KTCdoLyDhTibUxTKwT7Xsf_nK0SNJPjUC5qtt2a4QIODZFsmU_ERm0uKOlKiPn8-naMYQoQelo-qHtp-4=",
 		// buvid: props.buvid,
@@ -80,7 +87,7 @@ export function createLiveConnect(
 	})
 
 	live.on('DANMU_MSG', data => {
-		// console.log('弹幕', data)
+		console.log('弹幕', data)
 		options.DANMU_MSG?.(data)
 	})
 
