@@ -17,6 +17,7 @@ function App() {
 	const [list, setList] = useState<Partial<ItemProps>[]>([])
 	const [roomId, setRoomId] = useState<number>(0)
 	const [anchor, setAnchor] = useState<number>(0)
+	const [avatarList, setAvatarList] = useState<Map<string, any>>(new Map())
 
 
 	let total = 0
@@ -182,10 +183,27 @@ function App() {
 					})
 				*/
 					const content = info[1]
+					const uid = info[2][0]
 					const name = info[2][1]
+					let url
+
+					if (uid != 0 && avatarList.has(uid)) {
+						url = avatarList.get(uid)		
+					} else {
+						const {face} = await get<{face: string}>('/img/getInfo', {
+							uid
+						})
+						if (face) {
+							url = await get<any>('/img/getImg', {
+								url: face,
+							})
+						}
+						setAvatarList(avatarList.set(uid, url))
+					}
+
 					danmakuList.push({
 						type: CMD.DANMU_MSG,
-						avatar: Avatar,
+						avatar: url || Avatar,
 						content: handleContent(name, content),
 						name,
 						time: new Date().getTime(),
