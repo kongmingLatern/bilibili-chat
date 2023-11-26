@@ -1,7 +1,10 @@
 @font-face {
 	font-family: 'seto';
-	// src: url('./zi.ttf');
 	src: url('./hk.ttf');
+}
+@font-face {
+	font-family: 'zi';
+	src: url('./zi.ttf');
 }
 * {
 	margin: 0;
@@ -15,4 +18,8 @@ button,
 [type='submit'] {
 	background-color: unset;
 	color: unset;
+}
+
+:root {
+	font-family: 'zi';
 }
