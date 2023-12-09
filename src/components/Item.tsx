@@ -14,6 +14,7 @@ import Bat from '@/assets/bat.gif'
 import helloween from '@/assets/avatar.webp'
 import Christmas from '@/assets/1.png'
 import Christmas2 from '@/assets/2.png'
+import Ch3 from '@/assets/3.png'
 import Christmas1 from '@/assets/chrismas1.png'
 import Christmas4 from '@/assets/4.png'
 import Christmas3 from '@/assets/chrismas3.png'
@@ -23,7 +24,7 @@ import { useState } from 'react'
 
 export default function Item(props: Partial<ItemProps>) {
 	const { uid, type, avatar, name, time, content } = props
-	const [random, setRandom] =  useState(Math.floor(Math.random() * 4)) 
+	const [random, setRandom] =  useState(Math.floor(Math.random() * 5)) 
 	const [rand, setRand] = useState(Math.floor(Math.random() * 3))
 
 	const handleType = () => {
@@ -62,6 +63,8 @@ export default function Item(props: Partial<ItemProps>) {
 			return <img src={Christmas3} className='absolute top-[20%] left-[9%]' />
 			case 3:
 			return <img src={Christmas2} className='absolute top-[20%] left-[9%]' />
+			case 4:
+				return <img src={Ch3} className='absolute top-[20%] left-[7%]' />
 			default:
 		return <img src={Christmas1} className='absolute top-[17%] left-[9%]' />
 		}
