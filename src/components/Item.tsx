@@ -64,7 +64,7 @@ export default function Item(props: Partial<ItemProps>) {
 			case 3:
 			return <img src={Christmas2} className='absolute top-[20%] left-[9%]' />
 			case 4:
-				return <img src={Ch3} className='absolute top-[20%] left-[7%]' />
+				return <img src={Ch3} className='absolute top-[20%] left-[8%]' />
 			default:
 		return <img src={Christmas1} className='absolute top-[17%] left-[9%]' />
 		}
