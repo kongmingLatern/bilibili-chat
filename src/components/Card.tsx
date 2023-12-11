@@ -13,6 +13,7 @@ export default function Card(props) {
 		headerBackground = '',
 		color = '',
 		headerColor = '',
+		fontSize = '16px'
 	} = props
 
 	return (
@@ -21,6 +22,7 @@ export default function Card(props) {
 			style={{
 				background,
 				color,
+				fontSize,
 			}}
 		>
 			<header

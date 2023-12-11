@@ -4,6 +4,7 @@ import Wa from '@/assets/wa.png'
 import Eval from 'expr-eval'
 import { getFormatTime } from '@/utils'
 import mapperEmoji from '@/utils/emoji'
+import { CMD } from '../connect/const'
 const Parser = Eval.Parser
 
 const emojiMap = mapperEmoji
@@ -22,13 +23,15 @@ export function handleContent(
 
 	const { emoj: Emoj, result } = orderContent(content, name)
 
-	return (
-		<span className="inline-flex items-center z-100">
+	return {
+		node: (<span className="inline-flex items-center z-100">
 			{result !== content ? (
 				<Card
 					cover={Emoj || Wa}
 					name="触发特殊指令"
 					content={result}
+					color={'greenyellow'}
+					fontSize={'18px'}
 				/>
 			) : (
 				<span>{content}</span>
@@ -45,8 +48,9 @@ export function handleContent(
 					}}
 				/>
 			)}
-		</span>
-	)
+		</span>),
+		type: result !== content ? CMD.SPECIAL_EFFECT : CMD.DANMU_MSG
+	}
 }
 
 // TODO: B站表情映射

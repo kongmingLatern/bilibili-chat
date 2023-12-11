@@ -207,6 +207,59 @@ export default function Item(props: Partial<ItemProps>) {
 					</div>
 				</div>
 			)}
+				{type === CMD.SPECIAL_EFFECT && (
+				<div className="chat chat-start relative">
+					<div className="chat-image avatar">
+						<div className="w-[3rem]">
+							{/* 头像 */}
+							<img src={avatar} className="rounded-full" />
+							{/* 头像装饰 */}
+							<img
+								src={helloween}
+								style={{
+									width: 70,
+									height: 70,
+									minWidth: 70,
+								}}
+								className="absolute top-[-12px] left-[-10px]"
+							/>
+						</div>
+					</div>
+					<div className="color-white chat-header">
+						{name}{' '}
+						<time className="text-xs opacity-50">
+							{getFormatTime(time)}
+						</time>
+					</div>
+					<div
+						className={`relative max-w-[600px] min-w-[200px] px-20px color-black text-16px rounded-15px min-h-30px lh-30px flex flex-wrap popup font-semibold seto color-white`}
+						style={handleType()}
+					>
+						{content}
+						<div className="absolute left-[200px] bottom-[5px] z-11 slide-up-reverse">
+							<img
+								src={Bat}
+								width={50}
+								height={50}
+								style={{
+									transform: 'rotate(45deg)',
+								}}
+							/>
+						</div>
+
+						<div className="absolute right-[-15px] bottom-[5px] z-11 slide-up">
+							<img
+								src={Bat}
+								width={50}
+								height={50}
+								style={{
+									transform: 'rotate(-45deg)',
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+			)}
 		</li>
 	)
 }
