@@ -40,7 +40,7 @@ function App() {
 				// roomId: 415174
 				// roomId: 11713
 			},
-		{
+			{
 				INTERACT_WORD: res => {
 					const { msg_type, uname } = res.data
 					if (msg_type === 2) {
@@ -105,11 +105,10 @@ function App() {
 									<span className="color-white">
 										总价值:
 									</span>
-									{`${
-										giftName !== '辣条'
+									{`${giftName !== '辣条'
 											? total_coin / 100 + '电池'
 											: total_coin + '银瓜子'
-									} `}
+										} `}
 								</span>
 							</span>
 						),
@@ -164,7 +163,7 @@ function App() {
 						url: str,
 					})
 				
-		            const bufferImg = Buffer.from(
+								const bufferImg = Buffer.from(
 						dm_v2,
 						'base64'
 					).slice(0)
@@ -188,9 +187,9 @@ function App() {
 					let url
 
 					if (uid != 0 && avatarList.has(uid)) {
-						url = avatarList.get(uid)		
+						url = avatarList.get(uid)
 					} else {
-						const {face} = await get<{face: string}>('/img/getInfo', {
+						const { face } = await get<{ face: string }>('/img/getInfo', {
 							uid
 						})
 						if (face) {
@@ -204,7 +203,7 @@ function App() {
 					danmakuList.push({
 						type: CMD.DANMU_MSG,
 						avatar: url || Avatar,
-						content: handleContent(name, content),
+						content: handleContent(name, content).node,
 						name,
 						time: new Date().getTime(),
 						total,
@@ -221,7 +220,7 @@ function App() {
 						end_time,
 						uid,
 					} = res.data
-					
+
 					const url = await get<any>('/img/getImg', {
 						url: user_info.face,
 					})
@@ -231,24 +230,24 @@ function App() {
 						uid,
 						avatar: url,
 						content: (
-						    <span
+							<span
 								style={{
 									color: 'white'
 								}}
 							>
 								<span className="color-yellow font-semibold text-lg">
-								    {`${user_info.uname} `}
+									{`${user_info.uname} `}
 								</span>
 								{' '}留言说:
 								<br />
 								<span className="color-white font-semibold text-20px">
 									{message}
 								</span>
-								
-								<br/>
-								
+
+								<br />
+
 								<span>SC价格：
-								    <span className="color-yellow font-bold text-20px">{`${price}`}</span>
+									<span className="color-yellow font-bold text-20px">{`${price}`}</span>
 								</span>
 							</span>
 						),
@@ -289,34 +288,34 @@ function App() {
 						</span>
 					)
 					const guard = (
-					    <span className="color-darkblue text-22px font-bold">
-    				        {guard_level === 3
-        						? '舰长'
-        						: guard_level === 2
-        						? '提督'
-        						: guard_level === 1
-        						? '总督'
-        						: ''
-    						}
-					    </span>
+						<span className="color-darkblue text-22px font-bold">
+							{guard_level === 3
+								? '舰长'
+								: guard_level === 2
+									? '提督'
+									: guard_level === 1
+										? '总督'
+										: ''
+							}
+						</span>
 					)
 					danmakuList.push({
 						type: CMD.GUARD_BUY,
 						uid,
 						content: (
 							<span>
-							    监测到用户 {user} 在
-							    <span className="color-yellow font-semibold">
+								监测到用户 {user} 在
+								<span className="color-yellow font-semibold">
 									【本直播间】
 								</span>
-							    <br/>
-							    开通了
+								<br />
+								开通了
 								{guard} {' * '} {num}{' '}个月!
 								<br />
-								<span>CN: 
-								    <span className='color-red text-22px font-bold'>
-								        ¥{price / 1000}
-								    </span>
+								<span>CN:
+									<span className='color-red text-22px font-bold'>
+										¥{price / 1000}
+									</span>
 								</span>
 							</span>
 						),
@@ -346,7 +345,7 @@ function App() {
 					danmakuList.push({
 						type: CMD.POPULARITY_RED_POCKET_NEW,
 						content: (
-					    	<span className="color-white">
+							<span className="color-white">
 								<span className="text-lg color-darkblue font-semibold">{`${uname}`}</span>{' '}
 								送出了 {gift}
 								{' * '}
@@ -456,7 +455,7 @@ function App() {
 				</span>
 			</Space> */}
 
-		
+
 
 			{/* <img src={url} /> */}
 		</>
