@@ -20,12 +20,16 @@ import Christmas4 from '@/assets/4.png'
 import Christmas3 from '@/assets/chrismas3.png'
 import Marry1 from '@/assets/marry1.jpg'
 import Marry2 from '@/assets/marry2.jpeg'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { SingContext } from '@/App'
+import SingList from './SingList'
+import { Divider } from 'antd'
 
 export default function Item(props: Partial<ItemProps>) {
 	const { uid, type, avatar, name, time, content } = props
-	const [random, setRandom] =  useState(Math.floor(Math.random() * 5)) 
+	const [random, setRandom] = useState(Math.floor(Math.random() * 5))
 	const [rand, setRand] = useState(Math.floor(Math.random() * 3))
+	const { singList, setSingList } = useContext(SingContext)
 
 	const handleType = () => {
 		switch (type) {
@@ -60,13 +64,13 @@ export default function Item(props: Partial<ItemProps>) {
 			case 1:
 				return <img src={Christmas4} className='absolute top-[23%] left-[9%]' />
 			case 2:
-			return <img src={Christmas3} className='absolute top-[20%] left-[9%]' />
+				return <img src={Christmas3} className='absolute top-[20%] left-[9%]' />
 			case 3:
-			return <img src={Christmas2} className='absolute top-[20%] left-[9%]' />
+				return <img src={Christmas2} className='absolute top-[20%] left-[9%]' />
 			case 4:
 				return <img src={Ch3} className='absolute top-[20%] left-[8%]' />
 			default:
-		return <img src={Christmas1} className='absolute top-[17%] left-[9%]' />
+				return <img src={Christmas1} className='absolute top-[17%] left-[9%]' />
 		}
 	}
 
@@ -83,15 +87,15 @@ export default function Item(props: Partial<ItemProps>) {
 			)}
 			{(type === CMD.SEND_GIFT ||
 				type === CMD.POPULARITY_RED_POCKET_NEW) && (
-				<Card
-					{...{
-						...props,
-						avatar,
-						name: '感谢礼物',
-						cover: Love,
-					}}
-				/>
-			)}
+					<Card
+						{...{
+							...props,
+							avatar,
+							name: '感谢礼物',
+							cover: Love,
+						}}
+					/>
+				)}
 			{type === CMD.SUPER_CHAT_MESSAGE && (
 				<Card
 					{...{
@@ -180,7 +184,7 @@ export default function Item(props: Partial<ItemProps>) {
 						cover: Zan,
 						// background: '#052083',
 						// background: '#293a79',
-						background:`url(${rand ? Marry1: Marry2})`,
+						background: `url(${rand ? Marry1 : Marry2})`,
 						headerBackground: '#511482e0720f',
 					}}
 				/>
@@ -207,7 +211,7 @@ export default function Item(props: Partial<ItemProps>) {
 					</div>
 				</div>
 			)}
-				{type === CMD.SPECIAL_EFFECT && (
+			{type === CMD.SPECIAL_EFFECT && (
 				<div className="chat chat-start relative">
 					<div className="chat-image avatar">
 						<div className="w-[3rem]">
@@ -258,6 +262,14 @@ export default function Item(props: Partial<ItemProps>) {
 							/>
 						</div>
 					</div>
+				</div>
+			)}
+			{(type === CMD.SING_EFFECT || type === CMD.LOOK_SING_LIST) && (
+				<div className="chat chat-start">
+					<SingList
+						singList={singList}
+						setSingList={setSingList}
+					/>
 				</div>
 			)}
 		</li>

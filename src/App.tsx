@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react'
-import { useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import {
 	Button,
 	Divider,
@@ -20,6 +20,8 @@ import protobuf from 'protobufjs'
 import { get } from './api'
 import Avatar from '@/assets/love.png'
 
+export const SingContext = createContext({} as any)
+
 function App() {
 	// const [url, setUrl] = useState('')
 	// const [codeKey, setCodeKey] = useState('')
@@ -27,11 +29,15 @@ function App() {
 	const [live, setLive] = useState({} as KeepLiveWS)
 	const danmakuList: Partial<ItemProps>[] = []
 	const [list, setList] = useState<Partial<ItemProps>[]>([])
+	const [singList, setSingList] = useState<any[]>([])
 	const [roomId, setRoomId] = useState<number>(0)
 	const [anchor, setAnchor] = useState<number>(0)
+	// const aList = useState(JSON.parse(localStorage.getItem('avatarList') || undefined))
+	const [avatarList, setAvatarList] = useState<Map<string, any>>(new Map())
 
 
 	let total = 0
+
 
 	function reset() {
 		danmakuList.length = 0
@@ -43,15 +49,19 @@ function App() {
 			{
 				// 三月直播间
 				roomId: 30639870,
+				// roomId: 10704,
+				// roomId: 3143527
 				// 凤之兮原测试直播间
 				// roomId: 22021613,
+				// roomId: 867764,
 				// roomId: 923833,
+				// roomId: 10704
 				// roomId: 26307043,
 				// roomId: 4245963,
 				// roomId: 415174
 				// roomId: 11713
 			},
-		{
+			{
 				INTERACT_WORD: res => {
 					const { msg_type, uname } = res.data
 					if (msg_type === 2) {
@@ -116,11 +126,10 @@ function App() {
 									<span className="color-white">
 										总价值:
 									</span>
-									{`${
-										giftName !== '辣条'
-											? total_coin / 100 + '电池'
-											: total_coin + '银瓜子'
-									} `}
+									{`${giftName !== '辣条'
+										? total_coin / 100 + '电池'
+										: total_coin + '银瓜子'
+										} `}
 								</span>
 							</span>
 						),
@@ -175,7 +184,7 @@ function App() {
 						url: str,
 					})
 				
-		            const bufferImg = Buffer.from(
+								const bufferImg = Buffer.from(
 						dm_v2,
 						'base64'
 					).slice(0)
@@ -194,11 +203,66 @@ function App() {
 					})
 				*/
 					const content = info[1]
+					const uid = info[2][0]
 					const name = info[2][1]
+					let url
+
+					if (uid != 0 && avatarList.has(uid)) {
+						url = avatarList.get(uid)
+					} else {
+						const { face } = await get<{ face: string }>('/img/getInfo', {
+							uid
+						})
+						if (face) {
+							url = await get<any>('/img/getImg', {
+								url: face,
+							})
+						}
+						setAvatarList(avatarList.set(uid, url))
+						// localStorage.setItem('avatarList', JSON.stringify(avatarList))
+					}
+
+					const { node, type } = handleContent(name, content)
+
+					if (type === CMD.LOOK_SING_LIST) {
+						danmakuList.push({
+							type: CMD.SPECIAL_EFFECT,
+							avatar: url || Avatar,
+							content: node,
+							name,
+							time: new Date().getTime(),
+							total,
+						})
+					} else if (type === CMD.SING_EFFECT) {
+						// NOTE: 说明是点歌
+						const reg = /^点歌\s(.+?)(?:\s(.+?))?$/
+						const song = reg.exec(content)?.[1]
+						const singer = reg.exec(content)?.[2]
+
+						danmakuList.push({
+							type: CMD.SPECIAL_EFFECT,
+							avatar: url || Avatar,
+							content: node,
+							name,
+							time: new Date().getTime(),
+							total,
+						})
+
+						singList.push({
+							song,
+							singer,
+							url,
+							name,
+							currentTime: new Date().getTime(),
+							expiredTime: new Date().getTime() + 240000,
+						})
+						setSingList([...singList])
+					}
+
 					danmakuList.push({
-						type: CMD.DANMU_MSG,
-						avatar: Avatar,
-						content: handleContent(name, content),
+						type,
+						avatar: url || Avatar,
+						content: node,
 						name,
 						time: new Date().getTime(),
 						total,
@@ -215,7 +279,7 @@ function App() {
 						end_time,
 						uid,
 					} = res.data
-					
+
 					const url = await get<any>('/img/getImg', {
 						url: user_info.face,
 					})
@@ -225,24 +289,24 @@ function App() {
 						uid,
 						avatar: url,
 						content: (
-						    <span
+							<span
 								style={{
 									color: 'white'
 								}}
 							>
 								<span className="color-yellow font-semibold text-lg">
-								    {`${user_info.uname} `}
+									{`${user_info.uname} `}
 								</span>
 								{' '}留言说:
 								<br />
 								<span className="color-white font-semibold text-20px">
 									{message}
 								</span>
-								
-								<br/>
-								
+
+								<br />
+
 								<span>SC价格：
-								    <span className="color-yellow font-bold text-20px">{`${price}`}</span>
+									<span className="color-yellow font-bold text-20px">{`${price}`}</span>
 								</span>
 							</span>
 						),
@@ -283,34 +347,34 @@ function App() {
 						</span>
 					)
 					const guard = (
-					    <span className="color-darkblue text-22px font-bold">
-    				        {guard_level === 3
-        						? '舰长'
-        						: guard_level === 2
-        						? '提督'
-        						: guard_level === 1
-        						? '总督'
-        						: ''
-    						}
-					    </span>
+						<span className="color-darkblue text-22px font-bold">
+							{guard_level === 3
+								? '舰长'
+								: guard_level === 2
+									? '提督'
+									: guard_level === 1
+										? '总督'
+										: ''
+							}
+						</span>
 					)
 					danmakuList.push({
 						type: CMD.GUARD_BUY,
 						uid,
 						content: (
 							<span>
-							    监测到用户 {user} 在
-							    <span className="color-yellow font-semibold">
+								监测到用户 {user} 在
+								<span className="color-yellow font-semibold">
 									【本直播间】
 								</span>
-							    <br/>
-							    开通了
+								<br />
+								开通了
 								{guard} {' * '} {num}{' '}个月!
 								<br />
-								<span>CN: 
-								    <span className='color-red text-22px font-bold'>
-								        ¥{price / 1000}
-								    </span>
+								<span>CN:
+									<span className='color-red text-22px font-bold'>
+										¥{price / 1000}
+									</span>
 								</span>
 							</span>
 						),
@@ -340,7 +404,7 @@ function App() {
 					danmakuList.push({
 						type: CMD.POPULARITY_RED_POCKET_NEW,
 						content: (
-					    	<span className="color-white">
+							<span className="color-white">
 								<span className="text-lg color-darkblue font-semibold">{`${uname}`}</span>{' '}
 								送出了 {gift}
 								{' * '}
@@ -418,10 +482,14 @@ function App() {
 
 			{/* <Speech /> */}
 
-			<DanmakuList
-				total={list[list.length - 1]?.total || 0}
-				danmakuList={list}
-			/>
+			<SingContext.Provider value={{ singList, setSingList }}>
+				<DanmakuList
+					total={list[list.length - 1]?.total || 0}
+					danmakuList={list}
+				/>
+			</SingContext.Provider>
+
+
 
 			{/* <Space className="items-center mt-2rem">
 				<InputNumber
@@ -450,7 +518,7 @@ function App() {
 				</span>
 			</Space> */}
 
-		
+
 
 			{/* <img src={url} /> */}
 		</>

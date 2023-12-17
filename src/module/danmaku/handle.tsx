@@ -21,7 +21,21 @@ export function handleContent(
 
 	emoj = matchBasicContent(content)
 
-	const { emoj: Emoj, result } = orderContent(content, name)
+	const { emoj: Emoj, result, isSing, special_sing } = orderContent(content, name)
+
+	if (special_sing) {
+		return {
+			type: CMD.LOOK_SING_LIST,
+			node:
+				<Card
+					cover={Emoj || Wa}
+					name="触发特殊指令"
+					content={result}
+					color={'greenyellow'}
+					fontSize={'18px'}
+				/>
+		}
+	}
 
 	return {
 		node: (<span className="inline-flex items-center z-100">
@@ -49,7 +63,7 @@ export function handleContent(
 				/>
 			)}
 		</span>),
-		type: result !== content ? CMD.SPECIAL_EFFECT : CMD.DANMU_MSG
+		type: result !== content ? isSing ? CMD.SING_EFFECT : CMD.SPECIAL_EFFECT : CMD.DANMU_MSG
 	}
 }
 
@@ -89,8 +103,14 @@ function matchBasicContent(content: string) {
 
 function orderContent(content: string, name: string) {
 	let result = content
+	let sing = false
+
+	// 用于区分是点歌还是查看列表
+	let special_sing = false
+
 	const reg = {
-		ACTION: /> *(\w+)/,
+		// ACTION: /> *(\w+)/,
+		ACTION: />(\S+)/,
 		// >calc 1+1+2+3
 		CALC: />(.*?) (.+)/,
 		// NOTE: /80 1232123
@@ -99,6 +119,8 @@ function orderContent(content: string, name: string) {
 		COMMON: /@(.*?) (.+)/,
 		// NOTE: @san --action something
 		SPEC: /@(.*?) --action ([^ ]+) (.+)/,
+		// NOTE: 点歌 歌名 歌手
+		SING: /^点歌\s(.+?)(?:\s(.+?))?$/
 	}
 
 	if (content.includes('--') && reg.SPEC.test(content)) {
@@ -149,12 +171,24 @@ function orderContent(content: string, name: string) {
 					new Date().getTime()
 				)}`
 				break
+			case '查看':
+				special_sing = true
+				result = `查看点歌列表`
+				break
 		}
+	} else if (reg.SING.test(content)) {
+		// 说明触发了点歌
+		sing = true
+		const songName = reg.SING.exec(content)?.[1] || '未知歌名'
+		const singer = reg.SING.exec(content)?.[2] || '未知'
+		result = `点歌成功! ${songName}------${singer}`
 	}
 
 	return {
 		emoj: '',
 		result,
+		isSing: sing,
+		special_sing
 	}
 }
 function calculateMathExpression(expression) {

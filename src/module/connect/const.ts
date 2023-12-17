@@ -95,5 +95,12 @@ export const enum CMD {
 	LIVE_INTERACTIVE_GAME = 'LIVE_INTERACTIVE_GAME',
 
 	// NOTE: 自定义=>用于区分特殊指令
-	SPECIAL_EFFECT = 'SPECIAL_EFFECT'
+	SPECIAL_EFFECT = 'SPECIAL_EFFECT',
+
+
+	// NOTE: 自定义=>用于点歌
+	SING_EFFECT = 'SING_EFFECT',
+
+	// NOTE: 自定义 => 用于查看列表
+	LOOK_SING_LIST = 'LOOK_SING_LIST'
 }
