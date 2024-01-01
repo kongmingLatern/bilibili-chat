@@ -11,7 +11,7 @@ import Wa from '@/assets/wa.png'
 import Zan from '@/assets/zan.png'
 import wa from '@/assets/wa.gif'
 import Bat from '@/assets/bat.gif'
-import helloween from '@/assets/avatar.webp'
+import helloween from '@/assets/border.png'
 import Christmas from '@/assets/1.png'
 import Christmas2 from '@/assets/2.png'
 import Ch3 from '@/assets/3.png'
@@ -20,22 +20,32 @@ import Christmas4 from '@/assets/4.png'
 import Christmas3 from '@/assets/chrismas3.png'
 import Marry1 from '@/assets/marry1.jpg'
 import Marry2 from '@/assets/marry2.jpeg'
+import NewYear1 from '@/assets/newYear.png'
+import NewYear2 from '@/assets/newYear1.png'
+import NewYear3 from '@/assets/newYear2.png'
+import NewYear4 from '@/assets/newYear3.png'
+import NewYear5 from '@/assets/newYear4.png'
+import HappyNewYear1 from '@/assets/newYear.jpeg'
+import HappyNewYear2 from '@/assets/red.jpg'
+import HappyNewYear3 from '@/assets/newYear1.jpeg'
 import { useContext, useState } from 'react'
 import { SingContext } from '@/App'
 import SingList from './SingList'
 import { Divider } from 'antd'
+import RedPacket from './RedPacket'
+import Welcome from './Welcome'
 
 export default function Item(props: Partial<ItemProps>) {
 	const { uid, type, avatar, name, time, content } = props
 	const [random, setRandom] = useState(Math.floor(Math.random() * 5))
-	const [rand, setRand] = useState(Math.floor(Math.random() * 3))
+	const [rand, setRand] = useState(Math.floor(Math.random() * 4))
 	const { singList, setSingList } = useContext(SingContext)
 
 	const handleType = () => {
 		switch (type) {
 			case CMD.DANMU_MSG:
 				return {
-					color: 'royalblue'
+					color: '#ffd700'
 				}
 			case CMD.LIVE_INTERACTIVE_GAME:
 				return {
@@ -59,40 +69,74 @@ export default function Item(props: Partial<ItemProps>) {
 
 	const renderImg = (random) => {
 		switch (random) {
+			// case 0:
+			// 	return <img src={Christmas} className='absolute top-[20%] left-[9%]' />
+			// case 1:
+			// 	return <img src={Christmas4} className='absolute top-[23%] left-[9%]' />
+			// case 2:
+			// 	return <img src={Christmas3} className='absolute top-[20%] left-[9%]' />
+			// case 3:
+			// 	return <img src={Christmas2} className='absolute top-[20%] left-[9%]' />
+			// case 4:
+			// 	return <img src={Ch3} className='absolute top-[20%] left-[8%]' />
 			case 0:
-				return <img src={Christmas} className='absolute top-[20%] left-[9%]' />
+				return <img src={NewYear1} className='absolute top-[20%] left-[8%]' />
 			case 1:
-				return <img src={Christmas4} className='absolute top-[23%] left-[9%]' />
+				return <img src={NewYear2} className='absolute top-[20%] left-[7%]' />
 			case 2:
-				return <img src={Christmas3} className='absolute top-[20%] left-[9%]' />
+				return <img src={NewYear3} className='absolute top-[20%] left-[8%]' />
 			case 3:
-				return <img src={Christmas2} className='absolute top-[20%] left-[9%]' />
+				return <img src={NewYear4} className='absolute top-[20%] left-[6%]' />
 			case 4:
-				return <img src={Ch3} className='absolute top-[20%] left-[8%]' />
+				return <img src={NewYear5} className='absolute top-[20%] left-[5%]' />
 			default:
-				return <img src={Christmas1} className='absolute top-[17%] left-[9%]' />
+				return <img src={NewYear1} className='absolute top-[17%] left-[9%]' />
+		}
+	}
+
+	const renderBg = (rand) => {
+		switch (rand) {
+			case 0:
+				return HappyNewYear1
+			case 1:
+				return HappyNewYear2
+			case 2:
+				return HappyNewYear3
+			default:
+				return HappyNewYear1
 		}
 	}
 
 	return (
 		<li className="max-w-[1200px] enter-cover flex flex-col slide-up-animation cover">
 			{type === CMD.ENTRY_EFFECT && (
-				<Card
-					{...{
-						...props,
-						name: '[三月] 直播间进场特效弹幕',
-						cover: Call,
-					}}
+				// <Card
+				// 	{...{
+				// 		...props,
+				// 		name: '[三月] 直播间进场特效弹幕',
+				// 		cover: Call,
+				// 	}}
+				// />
+				<Welcome
+					{
+					...props
+					}
 				/>
 			)}
 			{(type === CMD.SEND_GIFT ||
 				type === CMD.POPULARITY_RED_POCKET_NEW) && (
-					<Card
+					// <Card
+					// 	{...{
+					// 		...props,
+					// 		avatar,
+					// 		name: '感谢礼物',
+					// 		cover: Love,
+					// 	}}
+					// />
+					<RedPacket
 						{...{
 							...props,
 							avatar,
-							name: '感谢礼物',
-							cover: Love,
 						}}
 					/>
 				)}
@@ -127,7 +171,7 @@ export default function Item(props: Partial<ItemProps>) {
 									height: 70,
 									minWidth: 70,
 								}}
-								className="absolute top-[-12px] left-[-10px]"
+								className="absolute top-[-13px] left-[-12px]"
 							/>
 						</div>
 					</div>
@@ -138,7 +182,7 @@ export default function Item(props: Partial<ItemProps>) {
 						</time>
 					</div>
 					<div
-						className={`relative max-w-[600px] min-w-[200px] px-20px color-black text-16px rounded-15px min-h-80px lh-80px flex flex-wrap popup font-semibold seto`}
+						className={`relative max-w-[600px] min-w-[200px] px-20px color-black text-16px rounded-15px min-h-80px lh-80px flex flex-wrap popup font-semibold `}
 						style={handleType()}
 					>
 						{content}
@@ -184,7 +228,7 @@ export default function Item(props: Partial<ItemProps>) {
 						cover: Zan,
 						// background: '#052083',
 						// background: '#293a79',
-						background: `url(${rand ? Marry1 : Marry2})`,
+						background: `url(${renderBg(rand)})`,
 						headerBackground: '#511482e0720f',
 					}}
 				/>
@@ -195,8 +239,8 @@ export default function Item(props: Partial<ItemProps>) {
 						...props,
 						name: '上舰通知',
 						cover: Wa,
-						background:
-							'linear-gradient( 135deg, #5EFCE8 10%, #736EFE 100%)',
+						// background:
+						// 	'linear-gradient( 135deg, #5EFCE8 10%, #736EFE 100%)',
 						headerBackground: 'crimson',
 					}}
 				/>
